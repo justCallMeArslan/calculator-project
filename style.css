@@ -31,7 +31,10 @@ body {
     margin: 12px;
     background-color: rgba(244, 254, 248, 0.975);
     border-radius: 10px;
-    font-size: 30px;
+    font-family: "VT323", monospace;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 33px;
 }
 
 .buttons {

@@ -1,6 +1,43 @@
-let aNumber;
+const digitButtons = document.querySelectorAll(".digits");
+const outputWindow = document.querySelector(".output");
+const clearButton = document.querySelector(".clear")
+
+console.log([digitButtons].textContent);
+console.log(outputWindow.textContent);
+
+
+
+let aNumber = digitButtons.forEach(button => {
+    button.addEventListener("click", () => {
+        if (outputWindow.textContent === "0") {
+            outputWindow.textContent = "";
+        };
+        outputWindow.textContent += button.textContent;
+    });
+})
+
+
+
 let bNumber;
+
+// let bNumber = digitButtons.forEach(button => {
+//     button.addEventListener("click", () => {
+//         if (outputWindow.textContent === "0") {
+//             outputWindow.textContent = "";
+//         };
+//         outputWindow.textContent += button.textContent;
+//     });
+// })
+
 let operator;
+
+function clearOutput () {
+    clearButton.addEventListener("click", ()=> {
+        outputWindow.textContent = "0";
+    })
+} 
+clearOutput();
+
 
 function add(a, b) {
     return a + b;
@@ -34,5 +71,5 @@ function operate(aNumber, operator, bNumber) {
 
 }
 
-console.log(operate(10, "x", 20));
+console.log(operate(aNumber, "x", bNumber));
 
