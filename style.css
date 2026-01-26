@@ -1,7 +1,11 @@
 body {
     margin: 0;
     padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
+
 
 .containerMain {
     background-color: aquamarine;
@@ -9,28 +13,45 @@ body {
     height: 500px;
     display: flex;
     flex-direction: column;
-   
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 10px;
+}
+
+.containerMain p {
+    text-align: end;
+    margin: 7px 12px 0px 0px;
+    font-size: 20px;
 }
 
 .output {
-    border: 1px solid black;
-    padding: 15px;
+    border: 2.5px solid black;
+    padding: 10px;
     text-align: end;
-    margin: 20px;
-    background-color: mintcream;
+    margin: 12px;
+    background-color: rgba(244, 254, 248, 0.975);
+    border-radius: 10px;
+    font-size: 30px;
 }
 
 .buttons {
-    border: 1px solid black;
-     display: flex;
+    display: flex;
     flex-wrap: wrap;
-    height: 350px;
+    height: 380px;
     flex-direction: row;
     justify-content: space-evenly;
     gap: 5px;
 }
 
 button {
-    height: 80px;
-    width: 80px;
+    height: 70px;
+    width: 70px;
+    border-radius: 15px;
+    box-shadow: 1.2px 3px rgba(0, 0, 0, 0.393);
+    background-color: rgba(244, 254, 248, 0.975);
+    font-size: 30px;
+}
+
+.operator {
+    background-color: #6feeb7;
 }

@@ -2,7 +2,7 @@ let aNumber;
 let bNumber;
 let operator;
 
-function add(a, b){
+function add(a, b) {
     return a + b;
 };
 
@@ -16,9 +16,9 @@ function multiply(a, b) {
 
 function divide(a, b) {
     return a / b;
-}; 
+};
 
-function operate(aNumber, operator, bNumber){
+function operate(aNumber, operator, bNumber) {
     switch (operator) {
         case "+":
             return add(aNumber, bNumber);
