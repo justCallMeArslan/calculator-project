@@ -4,3 +4,7 @@
 // 2 if a becomes negative number operation stops
 // 3. adding on-screen keyboard in place of 00 button
 // 4. add background of school table with school stationery
+// 5. after equation done, next digit input should clear output window and set new aNumber
+// 6. if mistaken with operator i should be able to change + on - , without backspace and just by 
+// pressing -
+// 7. 8 x0 gives NaN instead of "Error"

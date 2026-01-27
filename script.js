@@ -116,7 +116,7 @@ const equal = equalsButton.addEventListener("click", () => {
     if (isPercentPresent) {
         const result = percent(aNumber, bNumber, operator);
 
-        outputWindow.textContent = Math.round(result * 10) / 10;
+        outputWindow.textContent = Math.round(result * 100) / 100;
         return;
     }
 
@@ -130,7 +130,7 @@ const equal = equalsButton.addEventListener("click", () => {
             result = subtract(aNumber, bNumber);
             break;
         case "x":
-            result = bNumber === 0 ? "Can't divide by 0" : multiply(aNumber, bNumber);
+            result = bNumber === 0 ? "Error" : multiply(aNumber, bNumber);
             break;
         case "÷":
             result = bNumber === 0 ? 0 : divide(aNumber, bNumber);
@@ -139,7 +139,7 @@ const equal = equalsButton.addEventListener("click", () => {
             result = "NaO";
     }
 
-    outputWindow.textContent = Math.round(result * 10) / 10;
+    outputWindow.textContent = Math.round(result * 100) / 100;
 });
 
 
