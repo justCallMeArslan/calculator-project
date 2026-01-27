@@ -143,10 +143,3 @@ const equal = equalsButton.addEventListener("click", () => {
 });
 
 
-
-// 2 bugs atm:
-
-// 1. allowing second operator to append, instead of calculate (10-6, push 4 should give 4+ bNumber)
-// 2 if a becomes negative number operation stops
-// 3. adding on-screen keyboard in place of 00 button
-// 4. add background of school table with school stationery
