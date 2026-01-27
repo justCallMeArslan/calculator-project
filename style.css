@@ -58,3 +58,11 @@ button {
 .operator {
     background-color: #6feeb7;
 }
+
+.backspace {
+    background-color: #6feeb7;
+}
+
+.point {
+    background-color: rgba(244, 254, 248, 0.975);
+}
