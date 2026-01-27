@@ -5,6 +5,8 @@ const clearButton = document.querySelector(".clear");
 const equalsButton = document.querySelector(".equal")
 const backspaceButton = document.querySelector(".backspace")
 const pointButton = document.querySelector(".point")
+const percentButton = document.querySelector(".percent")
+
 
 
 // AC (all clear) button
@@ -14,18 +16,19 @@ clearButton.addEventListener("click", () => {
 
 // backspace button
 backspaceButton.addEventListener("click", () => {
-    if (outputWindow.textContent.length > 1) {
+    if (outputWindow.textContent.length <= 1) {
+        outputWindow.textContent = "0";
+    } else {
         outputWindow.textContent = outputWindow.textContent.slice(0, -1);
     }
 })
-
 // point button
 
 pointButton.addEventListener("click", () => {
-    const breakedOutput = outputWindow.textContent.split(/[+\-x÷%]/); // splitting output.Window into 
+    const brokenOutput = outputWindow.textContent.split(/[+\-x÷%]/); // splitting output.Window into 
     // array with deter of various expected operators [+\-x÷%]
-    const currentNumber = breakedOutput[breakedOutput.length - 1]; // picking last element of array to check 
-    // does it have point already or not
+    const currentNumber = brokenOutput[brokenOutput.length - 1]; // picking last element of array to 
+    // check: does it have point already or not?!
 
     if (currentNumber.includes(".")) return; // if last number of array already have ., we return 
     // and stop 
@@ -44,13 +47,13 @@ digitButtons.forEach(button => {
         if (outputWindow.textContent === "0") {
             outputWindow.textContent = "";
         };
-        if (outputWindow.textContent.length >= 14) return;
+        if (outputWindow.textContent.length >= 19) return;
         outputWindow.textContent += button.textContent;
     });
 })
 
 // operator buttons
-let operatorInput = operatorButtons.forEach(button => {
+operatorButtons.forEach(button => {
     button.addEventListener("click", () => {
         if (/[+\-x÷%]$/.test(outputWindow.textContent)) return; // tests if the string ends with 
         // operator, if true stop function from adding inputs
@@ -60,53 +63,90 @@ let operatorInput = operatorButtons.forEach(button => {
 });
 
 
-const equal = equalsButton.addEventListener("click", () => {
+function add(a, b) {
+    return a + b;
+};
 
-    let aNumber; // output before operator 
+function subtract(a, b) {
+    return a - b;
+};
 
-    let bNumber; // output after operator
+function multiply(a, b) {
+    return a * b;
+};
 
+function divide(a, b) {
+    return a / b;
+};
 
+function percent(a, b, operator) {
+    const p = (a * b) / 100;
 
-
-    function add(a, b) {
-        return a + b;
-    };
-
-    function substract(a, b) {
-        return a - b;
-    };
-
-    function multiply(a, b) {
-        return a * b;
-    };
-
-    function divide(a, b) {
-        return a / b;
-    };
-
-    function operate(aNumber, operator, bNumber) {
-        switch (operator) {
-            case "+":
-                return add(aNumber, bNumber);
-            case "-":
-                return substract(aNumber, bNumber);
-            case "x":
-                return multiply(aNumber, bNumber);
-            case "÷":
-                return divide(aNumber, bNumber);
-            default:
-                return "NaO";
-        }
-
+    switch (operator) {
+        case "+":
+            return a + p;
+        case "-":
+            return a - p;
+        case "x":
+            return a * p;
+        case "÷":
+            return p === 0 ? "Can't divide by 0" : a / p;
+        default:
+            return "NaO"
     }
 
 
+};
+
+
+const equal = equalsButton.addEventListener("click", () => {
+    const output = outputWindow.textContent
+
+    const numSplitted = output.split(/[+\-x÷%]/);
+    const aNumber = Number(numSplitted[0]);
+    let bNumber = Number(numSplitted[1]);
+
+    // before % clicked if it will be clicked at all
+    const match = output.match(/[+\-x÷%]/);
+    if (!match) return;
+    const operator = match[0];
+
+    // if % used
+    const isPercentPresent = output.includes("%");
+    if (isPercentPresent) {
+        const result = percent(aNumber, bNumber, operator);
+
+        outputWindow.textContent = Math.round(result * 10) / 10;
+        return;
+    }
+
+    let result;
+
+    switch (operator) {
+        case "+":
+            result = add(aNumber, bNumber);
+            break;
+        case "-":
+            result = subtract(aNumber, bNumber);
+            break;
+        case "x":
+            result = bNumber === 0 ? "Can't divide by 0" : multiply(aNumber, bNumber);
+            break;
+        case "÷":
+            result = bNumber === 0 ? 0 : divide(aNumber, bNumber);
+            break;
+        default:
+            result = "NaO";
+    }
+
+    outputWindow.textContent = Math.round(result * 10) / 10;
 });
 
 
 
-// basic calculator logic
+// 2 bugs atm:
 
-
-
+// 1. allowing second operator to append, instead of calculate (10-6, push 4 should give 4+ bNumber)
+// 2 if a becomes negative number operation stops
+// 3. adding on-screen keyboard in place of 00 button
+// 4. add background of school table with school stationery
