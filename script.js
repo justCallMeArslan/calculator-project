@@ -165,9 +165,7 @@ const equal = equalsButton.addEventListener("click", () => {
             result = subtract(aNumber, bNumber);
             break;
         case "x":
-            // result = multiply(aNumber, bNumber);
-            result = bNumber === 23032010 ? "My lovely wife Aishok ❤️❤️❤️❤️❤️❤️❤️❤️!" :
-                multiply(aNumber, bNumber);
+            result = multiply(aNumber, bNumber)
             break;
         case "÷":
             result = bNumber === 0 ? "Can't divide by 0" : divide(aNumber, bNumber);
