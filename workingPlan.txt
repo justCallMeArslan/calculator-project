@@ -1,10 +1,13 @@
 // 2 bugs and 2 features to be done:
 
-// 1. allowing second operator to append, instead of calculate (10-6, push 4 should give 4+ bNumber)
-// 2 if a becomes negative number operation stops
-// 3. adding on-screen keyboard in place of 00 button
-// 4. add background of school table with school stationery
-// 5. after equation done, next digit input should clear output window and set new aNumber
-// 6. if mistaken with operator i should be able to change + on - , without backspace and just by 
-// pressing -
-// 7. 8 x0 gives NaN instead of "Error"
+
+features
+// 1. adding on-screen keyboard in place of 00 button
+// 2. add background of school table with school stationery
+// 3. add number + operator sounds, addEL("click", sound)
+// 4. if output.length > 19 make number with e
+
+bugs 
+// 1 if a becomes negative number operation stops
+// 2. after equation done, next digit input should clear output window and set new aNumber
+

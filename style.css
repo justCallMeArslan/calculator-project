@@ -59,10 +59,9 @@ button {
     font-size: 30px;
 }
 
-.operator {
-    background-color: #6feeb7;
-}
 
+.operator,
+.percent,
 .backspace {
     background-color: #6feeb7;
 }

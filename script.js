@@ -29,7 +29,7 @@ pointButton.addEventListener("click", () => {
     // array with deter of various expected operators [+\-x÷%]
     const currentNumber = brokenOutput[brokenOutput.length - 1]; // picking last element of array to 
     // check: does it have point already or not?!
-
+    if (/%$/.test(outputWindow.textContent)) return;
     if (currentNumber.includes(".")) return; // if last number of array already have ., we return 
     // and stop 
 
@@ -44,10 +44,15 @@ pointButton.addEventListener("click", () => {
 // Number a and b handler
 digitButtons.forEach(button => {
     button.addEventListener("click", () => {
-        if (outputWindow.textContent === "0") {
+        const display = outputWindow.textContent;
+
+        if (/%$/.test(display)) return;
+
+        if (display === "0") {
             outputWindow.textContent = "";
         };
-        if (outputWindow.textContent.length >= 19) return;
+
+        if (display.length >= 19) return;
         outputWindow.textContent += button.textContent;
     });
 })
@@ -55,12 +60,40 @@ digitButtons.forEach(button => {
 // operator buttons
 operatorButtons.forEach(button => {
     button.addEventListener("click", () => {
-        if (/[+\-x÷%]$/.test(outputWindow.textContent)) return; // tests if the string ends with 
-        // operator, if true stop function from adding inputs
-        outputWindow.textContent += button.textContent;
-    });
 
+        const display = outputWindow.textContent;
+        const operator = button.textContent;
+
+        if (display === "") return;
+
+        if (/[+\-x÷%]/.test(display) && (/\d$/.test(display))) return; // checks entire display 
+        // if operator already exists AND if last number operator or number, if last is number 
+        // and operator already exists -> block another operators
+
+        if (/[+\-x÷]$/.test(display)) { //[RegExp]$ where $ tells that we check last operator
+            outputWindow.textContent = display.replace(/[+\-x÷]$/, operator); // replacing operator
+            // for another if user misclicked and chose wrong 
+            return;
+        }
+
+        if (/%$/.test(display)) return;
+
+
+        outputWindow.textContent += operator; //adds last clicked operator
+
+    })
 });
+
+// percent button
+
+percentButton.addEventListener("click", () => {
+    if (/[+\-x÷%]$/.test(outputWindow.textContent) ||
+        outputWindow.textContent === "") return;
+    outputWindow.textContent += "%";
+})
+
+
+
 
 
 function add(a, b) {
@@ -90,32 +123,34 @@ function percent(a, b, operator) {
         case "x":
             return a * p;
         case "÷":
-            return p === 0 ? "Can't divide by 0" : a / p;
+            return p === 0 ? 0 : a / p;
         default:
             return "NaO"
     }
-
-
 };
 
+function aNumbPercent(a) {
+    return a / 100;
+}
 
 const equal = equalsButton.addEventListener("click", () => {
     const output = outputWindow.textContent
-
-    const numSplitted = output.split(/[+\-x÷%]/);
-    const aNumber = Number(numSplitted[0]);
-    let bNumber = Number(numSplitted[1]);
 
     // before % clicked if it will be clicked at all
     const match = output.match(/[+\-x÷%]/);
     if (!match) return;
     const operator = match[0];
 
+    let [aNumString, bNumString] = output.split(operator);
+    const aNumber = Number(aNumString);
+    let bNumber = Number(bNumString.replace("%", "")); // if % present 
+
+
+
     // if % used
     const isPercentPresent = output.includes("%");
     if (isPercentPresent) {
         const result = percent(aNumber, bNumber, operator);
-
         outputWindow.textContent = Math.round(result * 100) / 100;
         return;
     }
@@ -130,16 +165,23 @@ const equal = equalsButton.addEventListener("click", () => {
             result = subtract(aNumber, bNumber);
             break;
         case "x":
-            result = bNumber === 0 ? "Error" : multiply(aNumber, bNumber);
+            // result = multiply(aNumber, bNumber);
+            result = bNumber === 23032010 ? "My lovely wife Aishok ❤️❤️❤️❤️❤️❤️❤️❤️!" :
+                multiply(aNumber, bNumber);
             break;
         case "÷":
-            result = bNumber === 0 ? 0 : divide(aNumber, bNumber);
+            result = bNumber === 0 ? "Can't divide by 0" : divide(aNumber, bNumber);
             break;
         default:
             result = "NaO";
     }
 
-    outputWindow.textContent = Math.round(result * 100) / 100;
+    if (typeof result === "string") {
+        outputWindow.textContent = result;
+    } else {
+        outputWindow.textContent = Math.round(result * 100) / 100;
+    }
+
 });
 
 
