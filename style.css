@@ -1,20 +1,29 @@
+html,
 body {
-    margin: 0;
-    padding: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+     margin: 0;
+     height: 100%;
 }
 
 
+body {
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    background-image: url(/images/picture-back4.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-color: #D1D2D0;
+}
+
 .containerMain {
-    background-color: aquamarine;
+    background-color: rgba(51, 209, 206, 0.859);
     width: 350px;
     height: 510px;
     display: flex;
     flex-direction: column;
     padding: 10px;
-    margin-top: 10px;
     border-radius: 10px;
 }
 
@@ -26,6 +35,13 @@ body {
     font-weight: 400;
     font-style: normal;
     font-size: 25px;
+    color: #6e31f1;;
+}
+
+.point,
+button,
+.output {
+    background-color: rgba(244, 254, 248, 0.975);
 }
 
 .output {
@@ -33,7 +49,6 @@ body {
     padding: 10px;
     text-align: end;
     margin: 12px;
-    background-color: rgba(244, 254, 248, 0.975);
     border-radius: 10px;
     font-family: "VT323", monospace;
     font-weight: 400;
@@ -55,17 +70,16 @@ button {
     width: 70px;
     border-radius: 15px;
     box-shadow: 1.2px 3px rgba(0, 0, 0, 0.393);
-    background-color: rgba(244, 254, 248, 0.975);
     font-size: 30px;
 }
-
 
 .operator,
 .percent,
 .backspace {
-    background-color: #6feeb7;
+    background-color: rgba(59, 182, 180, 0.763);
 }
 
-.point {
-    background-color: rgba(244, 254, 248, 0.975);
+.clear,
+.equal {
+    background-color: #8faff2;
 }

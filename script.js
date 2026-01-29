@@ -6,6 +6,7 @@ const equalsButton = document.querySelector(".equal")
 const backspaceButton = document.querySelector(".backspace")
 const pointButton = document.querySelector(".point")
 const percentButton = document.querySelector(".percent")
+const doubleZero = document.querySelector(".double-zero")
 
 const MAX_DISPLAY_LENGTH = 19;
 let justCalculated = false;
@@ -26,6 +27,21 @@ backspaceButton.addEventListener("click", () => {
     }
 });
 
+// double zero
+doubleZero.addEventListener("click", () => {
+    if (justCalculated) {
+        outputWindow.textContent = "0.0";
+        justCalculated = false;
+        return;
+    }
+    if (outputWindow.textContent === "0") {
+        outputWindow.textContent = "0.0";
+        return;
+    };
+    if (outputWindow.textContent.length + 2 > MAX_DISPLAY_LENGTH) return;
+    outputWindow.textContent += "00";
+})
+
 // point button
 pointButton.addEventListener("click", () => {
     const brokenOutput = outputWindow.textContent.split(/[+\-x÷%]/);
@@ -38,9 +54,10 @@ pointButton.addEventListener("click", () => {
     } else {
         outputWindow.textContent += "."
     }
+
 });
 
-// Number a and b handler
+// buttons for numbers 0-9 
 digitButtons.forEach(button => {
     button.addEventListener("click", () => {
         const display = outputWindow.textContent;
