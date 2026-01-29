@@ -16,7 +16,7 @@ clearButton.addEventListener("click", () => {
     outputWindow.textContent = "0";
 });
 
-// backspace button
+// backspace (delete) button
 backspaceButton.addEventListener("click", () => {
     if (outputWindow.textContent === "Can't divide by 0") return;
     if (outputWindow.textContent.length <= 1) {
@@ -95,7 +95,7 @@ percentButton.addEventListener("click", () => {
 
 })
 
-
+// computation part
 function add(a, b) {
     return a + b;
 };
@@ -133,7 +133,7 @@ function percent(a, b, operator) {
     }
 };
 
-
+// evaluation part
 const equal = equalsButton.addEventListener("click", () => {
     justCalculated = true;
     const output = outputWindow.textContent;
@@ -166,8 +166,7 @@ const equal = equalsButton.addEventListener("click", () => {
         return;
     }
 
-    // normal arithmetic
-
+    // normal arithmetics
     switch (operator) {
         case "+":
             result = add(aNumber, bNumber);
